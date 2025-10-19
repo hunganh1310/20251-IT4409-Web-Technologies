@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spark-reader
+spec:
+  containers:
+  - name: spark-job
+    image: apache/spark:3.5.1
+    command: ["/opt/spark/bin/spark-submit"]
+    args: [
+      "--packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.1",
+      "/app/spark_reader.py"
+    ]
+    volumeMounts:
+    - name: app-code
+      mountPath: "/app"
+    - name: ivy-cache # <--- Bổ sung quan trọng: Treo "bàn làm việc" vào
+      mountPath: "/home/spark/.ivy2"
+  volumes:
+  - name: app-code
+    configMap:
+      name: spark-reader-py
+  - name: ivy-cache # <--- Bổ sung quan trọng: Tạo "bàn làm việc" tạm thời
+    emptyDir: {}
+  restartPolicy: Never
