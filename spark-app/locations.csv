@@ -1,0 +1,4 @@
+loc_id,latitude,longitude,sensor_model,city,district
+TEST001,21.0000,105.0000,FakeSensorV1,Hanoi,Testing District 1
+TEST002,21.1111,105.1111,FakeSensorV2,Hanoi,Testing District 2
+TEST003,10.0000,106.0000,FakeSensorV1,Ho Chi Minh City,Testing District 3
