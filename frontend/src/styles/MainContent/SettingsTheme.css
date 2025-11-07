@@ -1,0 +1,6 @@
+.settings-theme-root { padding: 24px; background: #f4f8ff; border-radius: 10px; }
+.settings-theme-title { font-size: 1.3rem; font-weight: 600; margin-bottom: 18px; }
+.settings-theme-options { display: flex; gap: 18px; margin-bottom: 16px; }
+.settings-theme-color { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #b3c6ff; cursor: pointer; }
+.settings-theme-color.selected { border: 3px solid #1976d2; }
+.settings-theme-preview { margin-top: 18px; padding: 12px; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px #e0e0e0; }
