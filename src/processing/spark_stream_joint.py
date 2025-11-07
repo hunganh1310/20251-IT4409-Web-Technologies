@@ -108,6 +108,17 @@ PM10_BREAKPOINTS = [
 ]
 
 def _linear_interpolate(Cp, Clow, Chigh, Ilow, Ihigh):
+    """
+    Linearly interpolate AQI value within a breakpoint range.
+
+    Args:
+        Cp: Pollutant concentration
+        Clow, Chigh: Concentration breakpoint range
+        Ilow, Ihigh: AQI index range
+
+    Returns:
+        Interpolated AQI value
+    """
     return ((Ihigh - Ilow) / (Chigh - Clow)) * (Cp - Clow) + Ilow
 
 def compute_aqi_single(pm25_val, pm10_val):
