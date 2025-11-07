@@ -210,7 +210,7 @@ def write_to_postgres(batch_df: DataFrame, batch_id: int):
         batch_df: DataFrame batch to write
         batch_id: Batch identifier for logging
     """
-    if batch_df.rdd.isEmpty():
+    if batch_df.isEmpty():
         return
     jdbc_url = f"jdbc:postgresql://{settings.db_host}:{settings.db_port}/{settings.db_name}"
     connection_properties = {
