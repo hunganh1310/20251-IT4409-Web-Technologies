@@ -107,7 +107,7 @@ PM10_BREAKPOINTS = [
     (505, 604, 401, 500),
 ]
 
-def _linear_interpolate(Cp, Clow, Chigh, Ilow, Ihigh):
+def _linear_interpolate(Cp: float, Clow: float, Chigh: float, Ilow: int, Ihigh: int) -> float:
     """
     Linearly interpolate AQI value within a breakpoint range.
 
