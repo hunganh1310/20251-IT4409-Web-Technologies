@@ -14,6 +14,11 @@ from ..common import logger, settings
 from ..schemas import aqicn_schema, openaq_schema
 
 def get_spark_session() -> SparkSession:
+    """Create and configure a Spark session for joint streaming.
+
+    Returns:
+        Configured SparkSession instance
+    """
     spark = SparkSession.builder \
         .appName("AQ Joint Streaming") \
         .master("local[*]") \
