@@ -223,6 +223,12 @@ def write_to_postgres(batch_df: DataFrame, batch_id: int):
 
 # Main pipeline
 def main():
+    """
+    Main entry point for joint AQICN and OpenAQ streaming pipeline.
+
+    Sets up Kafka streams, normalizes data, performs spatial/temporal joins,
+    and writes enriched data to TimescaleDB.
+    """
     logger.info("Starting Joint Spark Streaming job (AQICN + OpenAQ)")
 
     # ensure DB table exists
