@@ -151,6 +151,12 @@ def compute_aqi_single(pm25_val, pm10_val):
 compute_aqi_udf = udf(compute_aqi_single, IntegerType())
 
 def create_joint_table():
+    """
+    Create the air_quality_enriched table and set up TimescaleDB hypertable.
+
+    Raises:
+        Exception: If database connection or table creation fails
+    """
     try:
         conn = psycopg2.connect(
             host=settings.db_host,
