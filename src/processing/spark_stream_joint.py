@@ -14,11 +14,6 @@ from ..common import logger, settings
 from ..schemas import aqicn_schema, openaq_schema
 
 def get_spark_session() -> SparkSession:
-    """Create and configure a Spark session for joint streaming.
-
-    Returns:
-        Configured SparkSession instance
-    """
     spark = SparkSession.builder \
         .appName("AQ Joint Streaming") \
         .master("local[*]") \
@@ -112,18 +107,7 @@ PM10_BREAKPOINTS = [
     (505, 604, 401, 500),
 ]
 
-def _linear_interpolate(Cp: float, Clow: float, Chigh: float, Ilow: int, Ihigh: int) -> float:
-    """
-    Linearly interpolate AQI value within a breakpoint range.
-
-    Args:
-        Cp: Pollutant concentration
-        Clow, Chigh: Concentration breakpoint range
-        Ilow, Ihigh: AQI index range
-
-    Returns:
-        Interpolated AQI value
-    """
+def _linear_interpolate(Cp, Clow, Chigh, Ilow, Ihigh):
     return ((Ihigh - Ilow) / (Chigh - Clow)) * (Cp - Clow) + Ilow
 
 def compute_aqi_single(pm25_val, pm10_val):
@@ -156,12 +140,6 @@ def compute_aqi_single(pm25_val, pm10_val):
 compute_aqi_udf = udf(compute_aqi_single, IntegerType())
 
 def create_joint_table():
-    """
-    Create the air_quality_enriched table and set up TimescaleDB hypertable.
-
-    Raises:
-        Exception: If database connection or table creation fails
-    """
     try:
         conn = psycopg2.connect(
             host=settings.db_host,
@@ -208,14 +186,7 @@ def create_joint_table():
         raise
 
 def write_to_postgres(batch_df: DataFrame, batch_id: int):
-    """
-    Write a batch of DataFrame records to PostgreSQL.
-
-    Args:
-        batch_df: DataFrame batch to write
-        batch_id: Batch identifier for logging
-    """
-    if batch_df.isEmpty():
+    if batch_df.rdd.isEmpty():
         return
     jdbc_url = f"jdbc:postgresql://{settings.db_host}:{settings.db_port}/{settings.db_name}"
     connection_properties = {
@@ -234,12 +205,6 @@ def write_to_postgres(batch_df: DataFrame, batch_id: int):
 
 # Main pipeline
 def main():
-    """
-    Main entry point for joint AQICN and OpenAQ streaming pipeline.
-
-    Sets up Kafka streams, normalizes data, performs spatial/temporal joins,
-    and writes enriched data to TimescaleDB.
-    """
     logger.info("Starting Joint Spark Streaming job (AQICN + OpenAQ)")
 
     # ensure DB table exists
