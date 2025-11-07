@@ -1,8 +1,8 @@
 import os
 import sys
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(current_dir)
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(project_root)
 
 from src.processing.spark_stream_joint import main
 
