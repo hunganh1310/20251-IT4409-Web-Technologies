@@ -186,6 +186,13 @@ def create_joint_table():
         raise
 
 def write_to_postgres(batch_df: DataFrame, batch_id: int):
+    """
+    Write a batch of DataFrame records to PostgreSQL.
+
+    Args:
+        batch_df: DataFrame batch to write
+        batch_id: Batch identifier for logging
+    """
     if batch_df.rdd.isEmpty():
         return
     jdbc_url = f"jdbc:postgresql://{settings.db_host}:{settings.db_port}/{settings.db_name}"
