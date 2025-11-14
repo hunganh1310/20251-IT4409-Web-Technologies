@@ -1,3 +1,39 @@
+// Import all settings for a user from JSON
+export const importSettings = async (userId, settingsObj) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/settings/advanced/${userId}/import`, settingsObj);
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+// Export all settings for a user as JSON
+export const exportSettings = async (userId) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/settings/advanced/${userId}/export`);
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+// Reset all settings for a user to default
+export const resetAllSettings = async (userId) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/settings/advanced/${userId}/reset`);
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
+// Toggle all notifications for a user
+export const toggleAllNotifications = async (userId, enable = true) => {
+  try {
+    const response = await axios.post(`${BASE_URL}/settings/advanced/${userId}/notifications/toggle`, null, { params: { enable } });
+    return response.data;
+  } catch (error) {
+    return handleApiError(error);
+  }
+};
 
 import axios from 'axios';
 
