@@ -1,3 +1,14 @@
+from fastapi import Body
+@router.patch("/settings/advanced/{user_id}/theme")
+def patch_theme(user_id: str, theme_patch: dict = Body(...)):
+    if user_id not in fake_db:
+        raise HTTPException(status_code=404, detail="User not found")
+    theme = fake_db[user_id].theme
+    for k, v in theme_patch.items():
+        if hasattr(theme, k):
+            setattr(theme, k, v)
+    fake_db[user_id].theme = theme
+    return theme
 from fastapi import Request
 @router.post("/settings/advanced/{user_id}/import")
 async def import_settings(user_id: str, request: Request):
