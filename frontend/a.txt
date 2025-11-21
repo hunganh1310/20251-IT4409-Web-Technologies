@@ -1,0 +1,15 @@
+\begin{center}
+    \textsc{\large \bf ĐẠI HỌC BÁCH KHOA HÀ NỘI}\\ 
+    \textsc{\large \bf TRƯỜNG CÔNG NGHỆ THÔNG TIN VÀ TRUYỀN THÔNG}\\[1cm]
+
+    \begin{figure}[H]
+        \vspace{0.1cm}
+        \includegraphics[scale = 0.15, center]{Images/OIP.jpg}\\[0.8cm]
+    \end{figure}
+    
+    \textsc{\LARGE BÁO CÁO BÀI TẬP LỚN }\\[0.5cm]
+    \textsc{\Large \bf Công nghệ Web và Dịch vụ trực tuyến}\\[0.3cm]
+    \HRule\\[0.4cm]
+    {\large \bf {Đề tài: Website nghe nhạc trực tuyến}\\[0.2cm]}
+    \HRule\\[1cm]
+\end{center}
