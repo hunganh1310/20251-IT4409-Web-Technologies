@@ -9,6 +9,7 @@
 	flex-direction: column;
 	gap: 20px;
 }
+
 .home-history-title {
 	color: #388e3c;
 	font-size: 1.5rem;
@@ -17,11 +18,13 @@
 	letter-spacing: 1px;
 	text-align: center;
 }
+
 .home-history-list {
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
+
 .home-history-entry {
 	padding: 12px 0;
 	border-bottom: 1px solid #a5d6a7;
@@ -31,20 +34,24 @@
 	align-items: center;
 	justify-content: space-between;
 }
+
 .home-history-entry:last-child {
 	border-bottom: none;
 }
+
 .home-history-date {
 	color: #757575;
 	font-size: 0.95rem;
 	margin-left: 16px;
 }
+
 .home-history-icon {
 	width: 24px;
 	height: 24px;
 	margin-right: 10px;
 	vertical-align: middle;
 }
+
 .home-history-clear-btn {
 	background: #e53935;
 	color: #fff;
@@ -57,9 +64,11 @@
 	margin-top: 18px;
 	transition: background 0.2s;
 }
+
 .home-history-clear-btn:hover {
 	background: #b71c1c;
 }
+
 .home-history-empty {
 	color: #bdbdbd;
 	text-align: center;

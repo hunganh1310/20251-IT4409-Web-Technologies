@@ -1,53 +1,7 @@
-.home-profile-placeholder-1 { color: #111; }
-.home-profile-placeholder-2 { color: #122; }
-.home-profile-placeholder-3 { color: #133; }
-.home-profile-placeholder-4 { color: #144; }
-.home-profile-placeholder-5 { color: #155; }
-.home-profile-placeholder-6 { color: #166; }
-.home-profile-placeholder-7 { color: #177; }
-.home-profile-placeholder-8 { color: #188; }
-.home-profile-placeholder-9 { color: #199; }
-.home-profile-placeholder-10 { color: #1aa; }
-.home-profile-placeholder-11 { color: #211; }
-.home-profile-placeholder-12 { color: #222; }
-.home-profile-placeholder-13 { color: #233; }
-.home-profile-placeholder-14 { color: #244; }
-.home-profile-placeholder-15 { color: #255; }
-.home-profile-placeholder-16 { color: #266; }
-.home-profile-placeholder-17 { color: #277; }
-.home-profile-placeholder-18 { color: #288; }
-.home-profile-placeholder-19 { color: #299; }
-.home-profile-placeholder-20 { color: #2aa; }
-.home-profile-placeholder-21 { color: #311; }
-.home-profile-placeholder-22 { color: #322; }
-.home-profile-placeholder-23 { color: #333; }
-.home-profile-placeholder-24 { color: #344; }
-.home-profile-placeholder-25 { color: #355; }
-.home-profile-placeholder-26 { color: #366; }
-.home-profile-placeholder-27 { color: #377; }
-.home-profile-placeholder-28 { color: #388; }
-.home-profile-placeholder-29 { color: #399; }
-.home-profile-placeholder-30 { color: #3aa; }
-.home-profile-placeholder-31 { color: #411; }
-.home-profile-placeholder-32 { color: #422; }
-.home-profile-placeholder-33 { color: #433; }
-.home-profile-placeholder-34 { color: #444; }
-.home-profile-placeholder-35 { color: #455; }
-.home-profile-placeholder-36 { color: #466; }
-.home-profile-placeholder-37 { color: #477; }
-.home-profile-placeholder-38 { color: #488; }
-.home-profile-placeholder-39 { color: #499; }
-.home-profile-placeholder-40 { color: #4aa; }
-.home-profile-placeholder-41 { color: #511; }
-.home-profile-placeholder-42 { color: #522; }
-.home-profile-placeholder-43 { color: #533; }
-.home-profile-placeholder-44 { color: #544; }
-.home-profile-placeholder-45 { color: #555; }
-.home-profile-placeholder-46 { color: #566; }
-.home-profile-placeholder-47 { color: #577; }
-.home-profile-placeholder-48 { color: #588; }
-.home-profile-placeholder-49 { color: #599; }
-.home-profile-placeholder-50 { color: #5aa; }
+.home-profile-placeholder {
+	color: #444;
+}
+
 .home-profile-form {
 	width: 100%;
 	display: flex;
@@ -55,16 +9,19 @@
 	gap: 14px;
 	margin-top: 18px;
 }
+
 .home-profile-form input {
 	padding: 8px 12px;
 	border: 1.5px solid #b3c6ff;
 	border-radius: 6px;
 	font-size: 1rem;
 }
+
 .home-profile-form label {
 	font-weight: 600;
 	color: #37474f;
 }
+
 .home-profile-save-btn {
 	background: #43a047;
 	color: #fff;
@@ -77,15 +34,18 @@
 	margin-top: 10px;
 	transition: background 0.2s;
 }
+
 .home-profile-save-btn:hover {
 	background: #2e7031;
 }
+
 .home-profile-error {
 	color: #e53935;
 	font-size: 0.98rem;
 	margin-top: 8px;
 	text-align: center;
 }
+
 .home-profile-root {
 	background: #f5f7fa;
 	border-radius: 14px;
@@ -98,6 +58,7 @@
 	align-items: center;
 	gap: 24px;
 }
+
 .home-profile-header {
 	color: #263238;
 	font-size: 2.2rem;
@@ -106,6 +67,7 @@
 	letter-spacing: 1px;
 	text-align: center;
 }
+
 .home-profile-avatar {
 	border-radius: 50%;
 	width: 80px;
@@ -114,6 +76,7 @@
 	object-fit: cover;
 	margin-bottom: 16px;
 }
+
 .home-profile-info {
 	width: 100%;
 	background: #fff;
@@ -124,11 +87,13 @@
 	font-size: 1.08rem;
 	color: #37474f;
 }
+
 .home-profile-info-label {
 	font-weight: 600;
 	color: #1976d2;
 	margin-right: 8px;
 }
+
 .home-profile-edit-btn {
 	background: #1976d2;
 	color: #fff;
@@ -141,9 +106,11 @@
 	margin-top: 10px;
 	transition: background 0.2s;
 }
+
 .home-profile-edit-btn:hover {
 	background: #0d47a1;
 }
+
 .home-profile-empty {
 	color: #bdbdbd;
 	text-align: center;

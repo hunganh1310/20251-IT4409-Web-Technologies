@@ -1,149 +1,115 @@
-.home-favorites-placeholder-1 { color: #111; }
-.home-favorites-placeholder-2 { color: #122; }
-.home-favorites-placeholder-3 { color: #133; }
-.home-favorites-placeholder-4 { color: #144; }
-.home-favorites-placeholder-5 { color: #155; }
-.home-favorites-placeholder-6 { color: #166; }
-.home-favorites-placeholder-7 { color: #177; }
-.home-favorites-placeholder-8 { color: #188; }
-.home-favorites-placeholder-9 { color: #199; }
-.home-favorites-placeholder-10 { color: #1aa; }
-.home-favorites-placeholder-11 { color: #211; }
-.home-favorites-placeholder-12 { color: #222; }
-.home-favorites-placeholder-13 { color: #233; }
-.home-favorites-placeholder-14 { color: #244; }
-.home-favorites-placeholder-15 { color: #255; }
-.home-favorites-placeholder-16 { color: #266; }
-.home-favorites-placeholder-17 { color: #277; }
-.home-favorites-placeholder-18 { color: #288; }
-.home-favorites-placeholder-19 { color: #299; }
-.home-favorites-placeholder-20 { color: #2aa; }
-.home-favorites-placeholder-21 { color: #311; }
-.home-favorites-placeholder-22 { color: #322; }
-.home-favorites-placeholder-23 { color: #333; }
-.home-favorites-placeholder-24 { color: #344; }
-.home-favorites-placeholder-25 { color: #355; }
-.home-favorites-placeholder-26 { color: #366; }
-.home-favorites-placeholder-27 { color: #377; }
-.home-favorites-placeholder-28 { color: #388; }
-.home-favorites-placeholder-29 { color: #399; }
-.home-favorites-placeholder-30 { color: #3aa; }
-.home-favorites-placeholder-31 { color: #411; }
-.home-favorites-placeholder-32 { color: #422; }
-.home-favorites-placeholder-33 { color: #433; }
-.home-favorites-placeholder-34 { color: #444; }
-.home-favorites-placeholder-35 { color: #455; }
-.home-favorites-placeholder-36 { color: #466; }
-.home-favorites-placeholder-37 { color: #477; }
-.home-favorites-placeholder-38 { color: #488; }
-.home-favorites-placeholder-39 { color: #499; }
-.home-favorites-placeholder-40 { color: #4aa; }
-.home-favorites-placeholder-41 { color: #511; }
-.home-favorites-placeholder-42 { color: #522; }
-.home-favorites-placeholder-43 { color: #533; }
-.home-favorites-placeholder-44 { color: #544; }
-.home-favorites-placeholder-45 { color: #555; }
-.home-favorites-placeholder-46 { color: #566; }
-.home-favorites-placeholder-47 { color: #577; }
-.home-favorites-placeholder-48 { color: #588; }
-.home-favorites-placeholder-49 { color: #599; }
-.home-favorites-placeholder-50 { color: #5aa; }
-.home-favorites-header {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	margin-bottom: 18px;
+
+.home-favorites-placeholder {
+    color: #444;
 }
+
+.home-favorites-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
 .home-favorites-add-btn {
-	background: #43a047;
-	color: #fff;
-	border: none;
-	border-radius: 6px;
-	padding: 7px 18px;
-	cursor: pointer;
-	font-size: 1rem;
-	font-weight: 500;
-	transition: background 0.2s;
+    background: #43a047;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 18px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.2s;
 }
 .home-favorites-add-btn:hover {
-	background: #2e7031;
+    background: #2e7031;
 }
+
 .home-favorites-item-favorite {
-	color: #ff7043;
-	font-weight: bold;
-	margin-left: 10px;
+    color: #ff7043;
+    font-weight: bold;
+    margin-left: 10px;
 }
+
 .home-favorites-item-date {
-	color: #bdbdbd;
-	font-size: 0.92rem;
-	margin-left: 16px;
+    color: #bdbdbd;
+    font-size: 0.92rem;
+    margin-left: 16px;
 }
+
 .home-favorites-footer {
-	margin-top: 24px;
-	text-align: right;
-	color: #fbc02d;
-	font-size: 1.05rem;
+    margin-top: 24px;
+    text-align: right;
+    color: #fbc02d;
+    font-size: 1.05rem;
 }
+
 .home-favorites-section {
-	background: #fffde7;
-	border-radius: 10px;
-	padding: 28px;
-	margin: 28px auto;
-	max-width: 540px;
-	box-shadow: 0 2px 8px #ffe082;
-	display: flex;
-	flex-direction: column;
-	gap: 18px;
+    background: #fffde7;
+    border-radius: 10px;
+    padding: 28px;
+    margin: 28px auto;
+    max-width: 540px;
+    box-shadow: 0 2px 8px #ffe082;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
+
 .home-favorites-title {
-	color: #fbc02d;
-	font-size: 1.7rem;
-	font-weight: 700;
-	margin-bottom: 14px;
-	letter-spacing: 0.5px;
-	text-align: center;
+    color: #fbc02d;
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+    text-align: center;
 }
+
 .home-favorites-list {
-	list-style: none;
-	padding: 0;
-	margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
+
 .home-favorites-item {
-	padding: 14px 0;
-	border-bottom: 1px solid #ffe082;
-	font-size: 1.08rem;
-	color: #f9a825;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #ffe082;
+    font-size: 1.08rem;
+    color: #f9a825;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .home-favorites-item:last-child {
-	border-bottom: none;
+    border-bottom: none;
 }
+
 .home-favorites-icon {
-	width: 22px;
-	height: 22px;
-	margin-right: 8px;
-	vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    margin-right: 8px;
+    vertical-align: middle;
 }
+
 .home-favorites-remove-btn {
-	background: #e53935;
-	color: #fff;
-	border: none;
-	border-radius: 6px;
-	padding: 5px 14px;
-	cursor: pointer;
-	font-size: 0.98rem;
-	font-weight: 500;
-	margin-left: 12px;
-	transition: background 0.2s;
+    background: #e53935;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 5px 14px;
+    cursor: pointer;
+    font-size: 0.98rem;
+    font-weight: 500;
+    margin-left: 12px;
+    transition: background 0.2s;
 }
 .home-favorites-remove-btn:hover {
-	background: #b71c1c;
+    background: #b71c1c;
 }
+
 .home-favorites-empty {
-	color: #bdbdbd;
-	text-align: center;
-	font-style: italic;
-	margin: 24px 0;
+    color: #bdbdbd;
+    text-align: center;
+    font-style: italic;
+    margin: 24px 0;
 }
