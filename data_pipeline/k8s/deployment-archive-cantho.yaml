@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: archive
-        image: vietnoy/airquality:latest
+        image: hunganh1310/airquality:latest
         imagePullPolicy: Always
         command: ["python3", "scripts/run_archive_cantho.py"]
         envFrom:

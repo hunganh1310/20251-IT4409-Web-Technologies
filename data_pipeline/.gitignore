@@ -213,3 +213,4 @@ tmp/
 # Kubernetes secrets (contains sensitive credentials)
 k8s/secret-real.yaml
 /test
+secret-template.yaml

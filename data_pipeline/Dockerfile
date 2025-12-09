@@ -1,17 +1,20 @@
-# Use official Spark image with Python 3.11
-FROM apache/spark:3.5.0-python3
+# Use Python 3.11 slim image with PySpark installed via pip
+FROM python:3.11-slim-bookworm
 
-# Switch to root to install system dependencies
-USER root
-
-# Install system dependencies
+# Install system dependencies including Java (required for Spark)
 RUN apt-get update && apt-get install -y \
+    default-jdk-headless \
     postgresql-client \
     libpq-dev \
     gcc \
     g++ \
     build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
+
+# Set Java environment
+ENV JAVA_HOME=/usr/lib/jvm/default-java
+ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
 # Set working directory
 WORKDIR /app
@@ -27,24 +30,12 @@ COPY src/ ./src/
 COPY scripts/ ./scripts/
 COPY data/ ./data/
 
-# Set permissions for spark user
-RUN chown -R spark:spark /app && \
-    chmod -R 755 /app
-
-# Create Spark directories for spark user
-RUN mkdir -p /home/spark/.ivy2/cache /home/spark/.ivy2/jars /tmp/spark_checkpoints && \
-    chown -R spark:spark /home/spark/.ivy2 && \
-    chmod -R 777 /home/spark/.ivy2 /tmp/spark_checkpoints
+# Create directories for Spark
+RUN mkdir -p /tmp/spark_checkpoints && \
+    chmod -R 777 /tmp/spark_checkpoints
 
 # Set Python path
 ENV PYTHONPATH=/app
-# Switch back to spark user for security
-USER spark
 
 # Default command (this will be overridden in K8s manifests)
-# For K8s, you'll run different commands like:
-#   - python3 scripts/run_realtime_hanoi.py
-#   - python3 scripts/run_realtime_danang.py
-#   - python3 scripts/run_archive_hanoi.py
-#   - python3 scripts/run_analytics_hourly_hanoi.py
 CMD ["echo", "Please specify a command to run. Example: python3 scripts/run_realtime_hanoi.py"]

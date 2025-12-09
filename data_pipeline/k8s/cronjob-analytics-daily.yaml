@@ -23,7 +23,7 @@ spec:
         spec:
           containers:
           - name: analytics-daily
-            image: vietnoy/airquality:latest
+            image: hunganh1310/airquality:latest
             imagePullPolicy: Always
             command: ["python3", "scripts/run_analytics_daily.py"]
             envFrom:

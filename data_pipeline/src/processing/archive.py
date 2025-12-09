@@ -19,18 +19,31 @@ def get_spark_session() -> SparkSession:
 
 
 def create_s3_client():
-    s3_client = boto3.client(
-        's3',
-        aws_access_key_id=settings.aws_access_key_id,
-        aws_secret_access_key=settings.aws_secret_access_key,
-        region_name=settings.aws_region
-    )
+    s3_config = {
+        'aws_access_key_id': settings.aws_access_key_id,
+        'aws_secret_access_key': settings.aws_secret_access_key,
+        'region_name': settings.aws_region
+    }
+    
+    # Support for MinIO local development
+    if settings.aws_s3_endpoint:
+        s3_config['endpoint_url'] = settings.aws_s3_endpoint
+    
+    s3_client = boto3.client('s3', **s3_config)
 
     try:
         s3_client.head_bucket(Bucket=settings.aws_s3_bucket)
         logger.info(f"S3 bucket {settings.aws_s3_bucket} exists")
     except:
-        logger.warning(f"S3 bucket {settings.aws_s3_bucket} not accessible or does not exist")
+        # Try to create bucket for MinIO
+        if settings.aws_s3_endpoint:
+            try:
+                s3_client.create_bucket(Bucket=settings.aws_s3_bucket)
+                logger.info(f"Created S3 bucket {settings.aws_s3_bucket}")
+            except Exception as e:
+                logger.warning(f"Could not create bucket: {e}")
+        else:
+            logger.warning(f"S3 bucket {settings.aws_s3_bucket} not accessible or does not exist")
 
     return s3_client
 

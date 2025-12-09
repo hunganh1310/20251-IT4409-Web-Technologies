@@ -46,6 +46,7 @@ class Settings:
     aws_secret_access_key: str
     aws_s3_bucket: str
     aws_region: str
+    aws_s3_endpoint: str  # For MinIO local development
     spark_checkpoint_location: str
 
     @classmethod
@@ -71,6 +72,7 @@ class Settings:
         aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY", "")
         aws_s3_bucket = os.getenv("AWS_S3_BUCKET", "airquality-archive")
         aws_region = os.getenv("AWS_REGION", "us-east-1")
+        aws_s3_endpoint = os.getenv("AWS_S3_ENDPOINT", "")  # For MinIO
         spark_checkpoint_location = os.getenv("SPARK_CHECKPOINT_LOCATION", "/tmp/spark_checkpoints")
         return cls(
             aqicn_token=aqicn_token,
@@ -94,6 +96,7 @@ class Settings:
             aws_secret_access_key=aws_secret_access_key,
             aws_s3_bucket=aws_s3_bucket,
             aws_region=aws_region,
+            aws_s3_endpoint=aws_s3_endpoint,
             spark_checkpoint_location=spark_checkpoint_location
         )
 

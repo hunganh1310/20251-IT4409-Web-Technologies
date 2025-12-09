@@ -25,7 +25,7 @@ spec:
         spec:
           containers:
           - name: analytics-hourly
-            image: vietnoy/airquality:latest
+            image: hunganh1310/airquality:latest
             imagePullPolicy: Always
             command: ["python3", "scripts/run_analytics_hourly_danang.py"]
             envFrom:
