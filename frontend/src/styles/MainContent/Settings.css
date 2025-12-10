@@ -1,0 +1,121 @@
+.settings-container {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.settings-sidebar {
+  width: 220px;
+  background: #1e1e1e;
+  color: white;
+  padding: 20px;
+}
+
+.settings-sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.settings-sidebar li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.settings-sidebar li.active,
+.settings-sidebar li:hover {
+  background: #333;
+}
+
+.settings-content {
+  flex: 1;
+  background: #121212;
+  color: white;
+  padding: 30px;
+}
+
+.section {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.section label {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.danger-button {
+  background-color: #e53935;
+  border: none;
+  padding: 10px 16px;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.home-button {
+  background: #333;
+  color: white;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.home-button:hover {
+  background: #444;
+}
+
+/* Make all inputs and selects consistent */
+.section.form-section label {
+  display: block;
+  margin-bottom: 20px;
+  font-weight: 500;
+  color: #f1f1f1;
+}
+
+.section.form-section input,
+.section.form-section select {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  background-color: #1e1e1e;
+  color: #fff;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.section.form-section input:focus,
+.section.form-section select:focus {
+  outline: none;
+  border-color: #1db954;
+}
+
+.primary-button {
+  background-color: #1db954;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.primary-button:hover {
+  background-color: #1ed760;
+}
