@@ -1,9 +1,0 @@
-spotipy
-pandas
-sqlalchemy
-pg8000
-kaggle
-python-dotenv
-pendulum
-yt_dlp
-minio
