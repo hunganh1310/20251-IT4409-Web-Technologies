@@ -19,7 +19,7 @@ RUN mkdir -p /opt/airflow/data /opt/airflow/logs
 
 # Copy DAGs and scripts
 COPY dags/ /opt/airflow/dags/
-COPY data_enrich.py upload_pg.py upload_mp3.py /opt/airflow/
+COPY scripts/data_enrich.py scripts/upload_pg.py scripts/upload_mp3.py /opt/airflow/
 COPY requirements.txt /requirements.txt
 
 # Install Python dependencies
