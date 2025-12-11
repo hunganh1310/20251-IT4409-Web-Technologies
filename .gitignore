@@ -27,4 +27,9 @@ Thumbs.db
 # Testing outputs
 coverage/
 
-gcs_key.json 
+# Sensitive files
+gcs_key.json
+airflow/cookies.txt
+
+/airflow
+/music-recommender
