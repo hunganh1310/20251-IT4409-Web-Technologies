@@ -14,7 +14,7 @@ class Playlist(Base):
     cover_image_url = Column(String, nullable=True)
     # is_public = Column(Boolean, default=True)
     # last_played = Column(DateTime, nullable=True)
-    owner_id = Column(String, nullable=True)
+    # owner_id = Column(String, nullable=True)  # Not in DB schema, use playlist_user table instead
     """
     - type 'single' or 'composite' for album
     - type 'playlist' for user's playlists

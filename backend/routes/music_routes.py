@@ -794,10 +794,31 @@ def add_to_liked_playlist(
         LIMIT 1
     """)
     result = db.execute(playlist_query, {"user_id": user_id}).first()
+    
+    # Auto-create Liked Songs playlist if it doesn't exist
     if not result:
-        raise HTTPException(status_code=404, detail="Liked Songs playlist not found")
-
-    playlist_id = result[0]
+        # Create the playlist using ORM (not raw SQL to avoid schema issues)
+        liked_playlist = Playlist(
+            name="Liked Songs",
+            description="Your personal liked songs collection",
+            cover_image_url="https://misc.scdn.co/liked-songs/liked-songs-640.png",
+        )
+        db.add(liked_playlist)
+        db.commit()
+        db.refresh(liked_playlist)
+        
+        playlist_id = liked_playlist.id
+        
+        # Link playlist to user
+        playlist_user = PlaylistUser(
+            playlist_id=playlist_id,
+            user_id=user_id,
+            type="playlist",
+        )
+        db.add(playlist_user)
+        db.commit()
+    else:
+        playlist_id = result[0]
 
     # Check if track is already added
     exists_query = text("""

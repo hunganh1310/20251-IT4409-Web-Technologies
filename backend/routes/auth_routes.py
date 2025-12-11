@@ -111,7 +111,7 @@ def signup(user: UserCreate, db: Session = Depends(get_db)):
     # Create default playlist
     liked_playlist = Playlist(
         name="Liked Songs",
-        owner_id=new_user.id,
+        # owner_id=new_user.id,  # Not in DB schema, use playlist_user table instead
         # is_public=False,
         description="Your personal liked songs collection",
         cover_image_url="https://misc.scdn.co/liked-songs/liked-songs-640.png",
