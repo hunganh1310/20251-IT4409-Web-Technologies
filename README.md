@@ -36,13 +36,6 @@ REFRESH_TOKEN_EXPIRE_DAYS=7
 docker compose up --build
 ```
 
-**Services:**
-- Frontend: `http://localhost:3000`
-- Backend API: `http://localhost:8001`
-- API Docs: `http://localhost:8001/docs`
-- Airflow: `http://localhost:8080`
-- MinIO: `http://localhost:9000`
-
 ### 4. Manual Development Setup
 
 **Backend:**
