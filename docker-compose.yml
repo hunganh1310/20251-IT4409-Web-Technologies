@@ -43,6 +43,7 @@ services:
       - ./airflow/progress.json:/opt/airflow/progress.json
       - ./airflow/tracks.json:/opt/airflow/tracks.json
       - ./airflow/data:/opt/airflow/data
+      - ./airflow/cookies.txt:/opt/airflow/cookies.txt
     restart: always
     healthcheck:
       test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
