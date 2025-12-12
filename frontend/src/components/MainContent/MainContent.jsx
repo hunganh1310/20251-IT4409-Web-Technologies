@@ -28,7 +28,7 @@ const MainContent = () => {
           try {
             let image = item.cover_image_url;
             let title = item.name;
-        
+
             if (item.type === "artist") {
               const res = await fetch(`${API_BASE}/api/music/artist/${item.id}`);
               const data = await res.json();
@@ -40,7 +40,7 @@ const MainContent = () => {
               image = data.cover_image_url;
               title = data.name;
             }
-        
+
             return {
               id: item.id,
               title: title,
@@ -75,10 +75,10 @@ const MainContent = () => {
 
   return (
     <div className="main-content">
-      {playlists.length > 0 && <SectionScroller title="💽 Your Playlists" items={playlists} />}
-      {savedAlbums.length > 0 && <SectionScroller title="🎼 Albums You Saved" items={savedAlbums} />}
-      {likedArtists.length > 0 && <SectionScroller title="🔥 Artists You Like" items={likedArtists} />}
-      <RecommendSongs title="🎵 Recommended for You" />
+      {playlists.length > 0 && <SectionScroller title="Your Playlists" items={playlists} />}
+      {savedAlbums.length > 0 && <SectionScroller title="Albums You Saved" items={savedAlbums} />}
+      {likedArtists.length > 0 && <SectionScroller title="Artists You Like" items={likedArtists} />}
+      <RecommendSongs title="You May Like" />
     </div>
   );
 };

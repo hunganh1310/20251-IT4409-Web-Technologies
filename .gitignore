@@ -33,3 +33,4 @@ airflow/cookies.txt
 
 /airflow
 /music-recommender
+backend/cookies.txt

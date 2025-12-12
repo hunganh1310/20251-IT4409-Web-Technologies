@@ -1,131 +1,147 @@
-  .spotify-signup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #121212; 
-  }
+/* =========================================
+   SIGN UP - Glassmorphism Theme
+   ========================================= */
 
-  .signup-container {
-    background-color: #181818;
-    padding: 40px;
-    border-radius: 10px;
-    width: 400px;
-    height: 450px;
-    text-align: center;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
-  }
-  
-  .checkbox-label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #b3b3b3;
-    font-size: 14px;
-    margin-top: 20px;
-    gap: 10px;
-    user-select: none;
-  }
-  
-  .checkbox-label input {
-    all: unset;
-    width: 11px;
-    height: 11px;
-    border: 2px solid white;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    display: inline-block;
-    position: relative;
-  }
-  
-  .checkbox-label input:checked {
-    background-color: #1DB954;
-  }
-  
-  input {
-    width: 90%;
-    padding: 12px 14px;
-    background-color: #2a2a2a;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 15px;
-    display: block;
-    margin: 20px auto 0 auto;
-    box-sizing: border-box;
-    font-family: 'Inter', 'Helvetica Neue', sans-serif;
-  }
+.spotify-signup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  padding: 20px;
+}
 
-  input:focus {
-    outline: none;
-  }
-  
-  input[type="date"] {
-    cursor: pointer;
-  }
-  
-  input[type="date"]::-webkit-calendar-picker-indicator {
-    filter: invert(1);
-    cursor: pointer;
-  }
-  /* Custom scrollbar for react-select dropdown */
-  .react-select__menu-list::-webkit-scrollbar {
-    width: 6px;
-  }
+.signup-container {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  padding: 48px 40px;
+  border-radius: var(--radius-xl);
+  width: 420px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
 
-  .react-select__menu-list::-webkit-scrollbar-track {
-    background: transparent;
-  }
+.signup-container h1 {
+  color: var(--text-primary);
+  font-size: 28px;
+  margin-bottom: 8px;
+  margin-top: 0;
+  font-weight: 700;
+}
 
-  .react-select__menu-list::-webkit-scrollbar-thumb {
-    background-color: #555;
-    border-radius: 3px;
-  }
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 20px;
+  gap: 10px;
+  user-select: none;
+}
 
-  /* Optional for Firefox */
-  .react-select__menu-list {
-    scrollbar-color: #555 transparent;
-    scrollbar-width: thin;
-  }
+.checkbox-label input {
+  all: unset;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border-medium);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-block;
+  position: relative;
+  background: var(--bg-input);
+}
 
-  .react-select__indicator-separator {
-    display: none !important;
-  }
+.checkbox-label input:checked {
+  background: var(--accent-primary);
+  border-color: var(--accent-primary);
+}
 
-  .error-text {
-    height: 20px;
-    color: #ff4c4c;
-    font-size: 14px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    text-align: center;
-  }
-  
-  .error-text.revealed {
-    opacity: 1;
-  }
+input {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  display: block;
+  margin: 16px auto 0 auto;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Helvetica Neue', sans-serif;
+  transition: all var(--transition-normal);
+}
 
-  .signup-btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 60px;
-    border: none;
-    border-radius: 30px;
-    background-color: #1DB954;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+input:focus {
+  outline: none;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(168, 230, 207, 0.3);
+}
 
-  .signup-btn:hover {
-    background-color: #1ed760;
-  }
+input[type="date"] {
+  cursor: pointer;
+}
 
-  .signup-container h1 {
-    color: #fff;
-    font-size: 24px;
-    margin-bottom: 20px;
-    margin-top: 40px;
-  }
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.5);
+  cursor: pointer;
+}
+
+/* Custom scrollbar for react-select dropdown */
+.react-select__menu-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.react-select__menu-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.react-select__menu-list::-webkit-scrollbar-thumb {
+  background-color: rgba(148, 163, 184, 0.3);
+  border-radius: 3px;
+}
+
+.react-select__menu-list {
+  scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
+  scrollbar-width: thin;
+}
+
+.react-select__indicator-separator {
+  display: none !important;
+}
+
+.error-text {
+  height: 20px;
+  color: var(--error);
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity var(--transition-normal);
+  text-align: center;
+}
+
+.error-text.revealed {
+  opacity: 1;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 32px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-hover));
+  color: var(--text-on-accent);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  box-shadow: 0 4px 15px rgba(168, 230, 207, 0.4);
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(168, 230, 207, 0.5);
+}

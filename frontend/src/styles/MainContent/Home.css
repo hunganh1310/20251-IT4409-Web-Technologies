@@ -1,24 +1,35 @@
+/* =========================================
+   HOME LAYOUT
+   ========================================= */
 .home {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: #000; /* Spotify dark background */
-    color: white;
-    margin: 0px;
-  }
-  
-  .home-content {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
-  
-  .main-outlet {
-    flex: 1;
-    overflow-y: auto;
-    background-color: #121212;
-    border-radius: 10px;
-    margin: 0px 10px 10px 0;
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;
-  }
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.home-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.main-outlet {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg-secondary);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  margin: 0 10px 10px 0;
+  box-shadow: var(--shadow-sm);
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.main-outlet::-webkit-scrollbar {
+  display: none;
+}

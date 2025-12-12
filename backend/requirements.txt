@@ -47,6 +47,7 @@ python-dotenv==1.0.1
 python-multipart==0.0.20
 typing_extensions==4.12.2
 click==8.1.8
+yt-dlp>=2024.12.6
 colorama==0.4.6
 beautifulsoup4==4.13.4
 cachetools==5.5.2
