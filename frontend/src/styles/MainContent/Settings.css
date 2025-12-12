@@ -1,14 +1,22 @@
+/* =========================================
+   SETTINGS PAGE - Glassmorphism Theme
+   ========================================= */
+
 .settings-container {
   display: flex;
-  height: 100vh;
-  font-family: Arial, sans-serif;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg-gradient);
 }
 
 .settings-sidebar {
-  width: 220px;
-  background: #1e1e1e;
-  color: white;
-  padding: 20px;
+  width: 240px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border-right: var(--glass-border);
+  color: var(--text-primary);
+  padding: 24px;
 }
 
 .settings-sidebar ul {
@@ -18,104 +26,127 @@
 }
 
 .settings-sidebar li {
-  padding: 10px;
+  padding: 12px 16px;
   cursor: pointer;
-  border-radius: 6px;
-  margin-top: 10px;
+  border-radius: var(--radius-md);
+  margin-top: 8px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: all var(--transition-normal);
 }
 
 .settings-sidebar li.active,
 .settings-sidebar li:hover {
-  background: #333;
+  background: rgba(168, 230, 207, 0.2);
+  color: var(--text-primary);
 }
 
 .settings-content {
   flex: 1;
-  background: #121212;
-  color: white;
-  padding: 30px;
+  background: transparent;
+  color: var(--text-primary);
+  padding: 32px 40px;
 }
 
 .section {
-  margin-top: 20px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .section label {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 .danger-button {
-  background-color: #e53935;
+  background: var(--error);
   border: none;
-  padding: 10px 16px;
-  color: white;
-  border-radius: 6px;
+  padding: 12px 20px;
+  color: var(--text-on-accent);
+  border-radius: var(--radius-md);
   cursor: pointer;
   width: fit-content;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+}
+
+.danger-button:hover {
+  background: #f87171;
+  transform: translateY(-1px);
 }
 
 .home-button {
-  background: #333;
-  color: white;
-  padding: 10px 12px;
-  border: none;
-  border-radius: 6px;
-  margin-bottom: 20px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  color: var(--text-primary);
+  padding: 10px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  margin-bottom: 24px;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 500;
   display: flex;
   align-items: center;
+  gap: 8px;
+  transition: all var(--transition-normal);
 }
 
 .home-button:hover {
-  background: #444;
+  background: var(--bg-hover);
+  border-color: var(--accent-primary);
 }
 
-/* Make all inputs and selects consistent */
+/* Form Section */
 .section.form-section label {
   display: block;
   margin-bottom: 20px;
   font-weight: 500;
-  color: #f1f1f1;
+  color: var(--text-primary);
 }
 
 .section.form-section input,
 .section.form-section select {
   display: block;
   width: 100%;
-  padding: 10px 12px;
-  margin-top: 6px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  background-color: #1e1e1e;
-  color: #fff;
-  border-radius: 4px;
+  padding: 12px 16px;
+  margin-top: 8px;
+  font-size: 15px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border-radius: var(--radius-md);
   box-sizing: border-box;
-  transition: border-color 0.2s ease-in-out;
+  transition: all var(--transition-normal);
 }
 
 .section.form-section input:focus,
 .section.form-section select:focus {
   outline: none;
-  border-color: #1db954;
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(168, 230, 207, 0.3);
 }
 
 .primary-button {
-  background-color: #1db954;
-  color: white;
-  padding: 10px 20px;
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  padding: 12px 24px;
   border: none;
-  border-radius: 20px;
-  font-size: 16px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-sm);
 }
 
 .primary-button:hover {
-  background-color: #1ed760;
+  background: var(--accent-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }

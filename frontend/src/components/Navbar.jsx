@@ -106,7 +106,6 @@ const Navbar = ({ username, profilePicture }) => {
   return (
     <header className="navbar">
       <div className="nav-left">
-        <img src="/spotify-logo.png" alt="Spotify" className="spotify-logo" />
         <button className="home-b" onClick={() => navigate("/")}>
           <FaHome /> 
         </button>

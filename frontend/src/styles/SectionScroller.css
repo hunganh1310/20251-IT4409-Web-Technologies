@@ -1,30 +1,36 @@
+/* =========================================
+   SECTION SCROLLER - Glassmorphism Theme
+   ========================================= */
+
 .section-scroller {
-  margin-bottom: 30px;
+  margin-bottom: 32px;
+  padding: 0 8px;
 }
 
 .section-scroller h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
-  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text-primary);
 }
 
 .card-row {
   display: flex;
   gap: 16px;
   overflow-x: auto;
-  padding-bottom: 10px;
-  scrollbar-width: thin; /* Firefox */
-  scrollbar-color: #555 #222;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.3) transparent;
 }
 
-/* Firefox luôn giữ scrollbar nhưng làm mờ khi không hover */
+/* Firefox - hide scrollbar when not hovering */
 .card-row:not(:hover) {
   scrollbar-color: transparent transparent;
 }
 
-/* Chrome - giữ diện tích scrollbar nhưng làm mờ */
+/* Chrome scrollbar styling */
 .card-row::-webkit-scrollbar {
-  height: 8px;
+  height: 6px;
   opacity: 1;
 }
 
@@ -33,43 +39,49 @@
 }
 
 .card-row::-webkit-scrollbar-thumb {
-  background-color: #555;
+  background-color: rgba(148, 163, 184, 0.3);
   border-radius: 4px;
 }
 
 .card-row::-webkit-scrollbar-track {
-  background-color: #222;
+  background-color: transparent;
 }
 
-
+/* Music Card */
 .music-card {
-  min-width: 150px;
-  max-width: 150px;
-  background-color: #181818;
-  padding: 12px;
-  border-radius: 8px;
+  min-width: 160px;
+  max-width: 160px;
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  padding: 14px;
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all var(--transition-normal);
   flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
 }
 
 .music-card:hover {
-  background-color: #282828;
+  background: var(--bg-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
 .music-card img {
   width: 100%;
-  height: 150px;
+  height: 140px;
   object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 8px;
-  background-color: #333;
+  border-radius: var(--radius-md);
+  margin-bottom: 12px;
+  box-shadow: var(--shadow-sm);
 }
 
 .music-card .title {
   font-weight: 600;
   font-size: 14px;
-  color: white;
+  color: var(--text-primary);
   margin-bottom: 4px;
   white-space: nowrap;
   overflow: hidden;
@@ -78,7 +90,7 @@
 
 .music-card .subtitle {
   font-size: 12px;
-  color: #b3b3b3;
+  color: var(--text-secondary);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

@@ -35,14 +35,14 @@ const RecommendSongs = ({ title }) => {
       const enrichedCurrent = {
         ...current,
         mp3_url: mp3Url,
-        track_name: current.title, 
+        track_name: current.title,
       };
 
       const rest = await Promise.all(
         restTracks.map(async (t) => {
           return {
             ...t,
-            track_name: t.title, 
+            track_name: t.title,
           };
         })
       );
@@ -75,7 +75,7 @@ const RecommendSongs = ({ title }) => {
         setSongs(data);
       } catch (err) {
         console.error(err);
-        setError("Oops! Unable to load recommendations 😥");
+        setError("Oops! Unable to load recommendations");
       } finally {
         setLoading(false);
       }
@@ -93,29 +93,29 @@ const RecommendSongs = ({ title }) => {
 
       {!loading && !error && (
         songs.length > 0 ? (
-            <div className="scroll-container">
+          <div className="scroll-container">
             {songs.map((item, index) => (
-                <div
+              <div
                 key={index}
                 className="music-card"
                 style={{ animationDelay: `${index * 0.1}s` }}
                 onClick={() => handlePlaySong(item.id)}
                 title="Click to play this song"
-                >
-                <img 
-                  src={item.cover_url || "/default_cover.png"} 
-                  alt={item.title} 
+              >
+                <img
+                  src={item.cover_url || "/default_cover.png"}
+                  alt={item.title}
                   onError={(e) => { e.target.onerror = null; e.target.src = "/default_cover.png"; }}
                 />
                 <p className="title">{item.title}</p>
                 <p className="subtitle">{item.artist}</p>
-                </div>
+              </div>
             ))}
-            </div>
+          </div>
         ) : (
-            <p style={{ color: "#ccc" }}>No recommendations available. Try searching for some songs 🎵</p>
+          <p style={{ color: "#ccc" }}>No recommendations available. Try searching for some songs 🎵</p>
         )
-        )}
+      )}
 
     </div>
   );
