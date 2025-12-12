@@ -109,6 +109,7 @@
   position: sticky;
   top: 81px;
   background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   z-index: 999;
   padding: 0 16px 8px 16px;
@@ -209,6 +210,7 @@
 .sidebar-left.expanded {
   width: 600px;
   background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   overflow-y: auto;
   border-radius: var(--radius-lg);
@@ -227,6 +229,7 @@
   position: sticky;
   top: 129px;
   background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   align-items: center;
   height: 40px;
@@ -284,6 +287,7 @@
   position: sticky;
   top: 129px;
   background: rgba(255, 255, 255, 0.95);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   z-index: 999;
   border-bottom: 1px solid var(--border-light);
@@ -437,6 +441,7 @@
   top: 110%;
   right: 0;
   background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -480,6 +485,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   z-index: 1000;
   display: flex;
@@ -489,8 +495,8 @@
 
 .modal-content {
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   padding: 32px 28px;
   border-radius: var(--radius-xl);
   width: 420px;

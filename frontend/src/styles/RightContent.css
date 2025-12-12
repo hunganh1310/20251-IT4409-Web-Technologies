@@ -15,8 +15,8 @@
   min-height: 420px;
   max-height: 100%;
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--radius-lg);
   overflow: hidden;
@@ -47,8 +47,8 @@
   z-index: 2;
   padding: 20px;
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   border-radius: var(--radius-lg);
 }
 
@@ -109,6 +109,7 @@
 /* Queue View */
 .right-content-cover.queue-view {
   background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
   width: 340px;
   padding: 20px;
@@ -179,8 +180,8 @@
   right: 0;
   top: 100%;
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--radius-md);
   min-width: 200px;
@@ -227,8 +228,8 @@
   right: 100%;
   top: 0;
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--radius-md);
   padding: 4px;

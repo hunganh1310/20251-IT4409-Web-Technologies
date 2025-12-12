@@ -211,8 +211,8 @@ tr:hover .hover-only {
 
 .album-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: var(--glass-border);
   padding: 16px;
   border-radius: var(--radius-lg);
@@ -296,8 +296,8 @@ tr:hover .hover-only {
   right: 0;
   top: 110%;
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--radius-md);
   min-width: 180px;
@@ -342,8 +342,8 @@ tr:hover .hover-only {
 
 .artist-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: var(--glass-border);
   border-radius: var(--radius-lg);
   width: 170px;
@@ -410,8 +410,8 @@ tr:hover .hover-only {
   top: 24px;
   right: 0;
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
@@ -466,8 +466,8 @@ tr:hover .hover-only {
 
 .emotion-response {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 2rem;
@@ -520,8 +520,8 @@ tr:hover .hover-only {
 
 .track-card {
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: var(--glass-border);
   border-radius: var(--radius-lg);
   padding: 16px;

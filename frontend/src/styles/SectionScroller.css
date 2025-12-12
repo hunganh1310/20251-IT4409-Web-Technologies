@@ -52,8 +52,8 @@
   min-width: 160px;
   max-width: 160px;
   background: var(--glass-bg);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   border: var(--glass-border);
   padding: 14px;
   border-radius: var(--radius-lg);

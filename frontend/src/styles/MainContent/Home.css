@@ -20,8 +20,8 @@
   flex: 1;
   overflow-y: auto;
   background: var(--bg-secondary);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--radius-lg);
   margin: 0 10px 10px 0;

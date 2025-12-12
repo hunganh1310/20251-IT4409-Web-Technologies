@@ -10,8 +10,8 @@
   padding: 0 24px;
   color: var(--text-primary);
   background: linear-gradient(135deg, rgba(168, 230, 207, 0.3), rgba(184, 212, 227, 0.3));
-  backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
   font-size: 14px;
   gap: 20px;
   border-top: 1px solid var(--border-light);
@@ -171,8 +171,8 @@
   border-radius: 8px;
   background: linear-gradient(to right, var(--accent-primary) 50%, rgba(148, 163, 184, 0.3) 50%);
   outline: none;
-  appearance: none;
   -webkit-appearance: none;
+  appearance: none;
   padding: 0;
   display: block;
   margin: auto;
@@ -181,8 +181,8 @@
 }
 
 .volume-slider::-webkit-slider-thumb {
-  appearance: none;
   -webkit-appearance: none;
+  appearance: none;
   width: 14px;
   height: 14px;
   background: var(--accent-primary);
@@ -207,8 +207,8 @@
   bottom: 120%;
   left: 0;
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   border-radius: var(--radius-md);
   min-width: 180px;
