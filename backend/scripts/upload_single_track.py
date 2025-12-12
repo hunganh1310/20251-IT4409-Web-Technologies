@@ -72,24 +72,68 @@ def check_track_exists(track_name: str) -> bool:
 
 def download_mp3(track_name: str, output_dir: str) -> str:
     """Download MP3 from YouTube"""
-    file_path = os.path.join(output_dir, f"{track_name}.mp3")
+    # Clean filename for filesystem
+    safe_filename = "".join(c for c in track_name if c.isalnum() or c in (' ', '-', '_')).strip()
+    if not safe_filename:
+        safe_filename = "track"
+    file_path = os.path.join(output_dir, f"{safe_filename}.mp3")
+    
+    # Clean up any existing partial/temp files
+    import glob
+    for ext in ['.mp4', '.webm', '.m4a', '.part', '.ytdl']:
+        temp_file = file_path.replace('.mp3', ext)
+        if os.path.exists(temp_file):
+            try:
+                os.remove(temp_file)
+            except:
+                pass
+    
+    for part_file in glob.glob(os.path.join(output_dir, f"{safe_filename}*part*")):
+        try:
+            os.remove(part_file)
+        except:
+            pass
+    
+    # Check for cookies file
+    cookies_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'cookies.txt')
+    cookies_exists = os.path.exists(cookies_path)
     
     ydl_opts = {
         'format': 'bestaudio/best',
         'outtmpl': file_path.replace(".mp3", ".%(ext)s"),
         'quiet': False,
+        'ignoreerrors': False,
+        'retries': 3,
+        'fragment_retries': 3,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'mp3',
             'preferredquality': '192',
-        }]
+        }],
+        'keepvideo': False,
     }
+    
+    # Add cookies if available
+    if cookies_exists:
+        ydl_opts['cookiefile'] = cookies_path
+        print(f"🍪 Using YouTube cookies from: {cookies_path}")
+    else:
+        print(f"⚠️  No cookies file found at: {cookies_path}")
+        print("   Tip: Export YouTube cookies to avoid bot detection")
 
     print(f"🔍 Searching YouTube for: {track_name}")
     with YoutubeDL(ydl_opts) as ydl:
         ydl.download([f"ytsearch1:{track_name}"])
+    
+    # Verify file exists and has content
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"MP3 file was not created: {file_path}")
+    
+    file_size = os.path.getsize(file_path)
+    if file_size < 1000:  # Less than 1KB
+        raise ValueError(f"Downloaded file is too small ({file_size} bytes): {file_path}")
 
-    print(f"✅ Downloaded to: {file_path}")
+    print(f"✅ Downloaded to: {file_path} ({file_size / 1024 / 1024:.2f} MB)")
     return file_path
 
 
@@ -125,18 +169,39 @@ def upload_track(track_name: str):
     
     # Create temp directory for download
     with tempfile.TemporaryDirectory() as temp_dir:
-        try:
-            # Download from YouTube
-            file_path = download_mp3(track_name, temp_dir)
-            
-            # Upload to MinIO
-            upload_to_s3(file_path, track_name)
-            
-            print(f"\n🎉 Successfully uploaded: {track_name}")
-            
-        except Exception as e:
-            print(f"\n❌ Error: {e}")
-            raise
+        max_attempts = 3
+        for attempt in range(1, max_attempts + 1):
+            try:
+                print(f"\n🔄 Attempt {attempt}/{max_attempts}")
+                
+                # Download from YouTube
+                file_path = download_mp3(track_name, temp_dir)
+                
+                # Upload to MinIO
+                upload_to_s3(file_path, track_name)
+                
+                print(f"\n🎉 Successfully uploaded: {track_name}")
+                break
+                
+            except Exception as e:
+                print(f"\n❌ Error on attempt {attempt}: {e}")
+                
+                # Clean up any partial files
+                import glob
+                for temp_file in glob.glob(os.path.join(temp_dir, "*")):
+                    try:
+                        if os.path.exists(temp_file):
+                            os.remove(temp_file)
+                    except:
+                        pass
+                
+                if attempt < max_attempts:
+                    print(f"⏳ Retrying in 2 seconds...")
+                    import time
+                    time.sleep(2)
+                else:
+                    print(f"\n💥 Failed after {max_attempts} attempts")
+                    raise
 
 
 def main():
