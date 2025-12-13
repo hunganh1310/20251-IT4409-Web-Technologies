@@ -13,8 +13,8 @@
 
 .signup-container {
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
   padding: 48px 40px;
   border-radius: var(--radius-xl);
@@ -39,6 +39,7 @@
   font-size: 14px;
   margin-top: 20px;
   gap: 10px;
+  -webkit-user-select: none;
   user-select: none;
 }
 
