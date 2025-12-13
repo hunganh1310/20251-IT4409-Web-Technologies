@@ -21,7 +21,8 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:3000",  # Development
         "http://localhost:3001",  # Development alternate port
-        "https://kis-music-streaming-9l1lm6io6-hunganh1310s-projects.vercel.app",  # New Vercel deployment
+        "https://kis-music-streaming-9l1lm6io6-hunganh1310s-projects.vercel.app",
+        "https://20251-it-4409-web-technologies.vercel.app",
     ],
     allow_credentials=True,
     allow_methods=["*"],

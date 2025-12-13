@@ -139,11 +139,15 @@ const MusicPlayer = ({
 
       <div className="player-center">
         <div className="controls">
-          <FaStepBackward className="icon-button" onClick={onPrev} />
+          <button className="icon-button" onClick={onPrev} aria-label="Previous" title="Previous">
+            <FaStepBackward />
+          </button>
           <button className="play-button" onClick={onPlayPause}>
             {isPlaying ? <FaPause /> : <FaPlay />}
           </button>
-          <FaStepForward className="icon-button" onClick={onNext} />
+          <button className="icon-button" onClick={onNext} aria-label="Next" title="Next">
+            <FaStepForward />
+          </button>
         </div>
         <div className="progress-container">
           <span className="time">{formatTime(currentTime)}</span>
