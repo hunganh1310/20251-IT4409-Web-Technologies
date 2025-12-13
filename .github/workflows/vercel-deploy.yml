@@ -18,6 +18,10 @@ env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -35,21 +39,13 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Pull Vercel Environment Information
-        run: vercel pull --yes --environment=${{ github.ref == 'refs/heads/main' && 'production' || 'preview' }} --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: ./frontend
-
-      - name: Build Project Artifacts
-        run: vercel build ${{ github.ref == 'refs/heads/main' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }}
-        working-directory: ./frontend
-
-      - name: Deploy Project Artifacts to Vercel
+      - name: Deploy to Vercel
         id: deploy
         run: |
-          url=$(vercel deploy --prebuilt ${{ github.ref == 'refs/heads/main' && '--prod' || '' }} --token=${{ secrets.VERCEL_TOKEN }})
+          cd frontend
+          url=$(vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes --cwd .)
           echo "url=$url" >> $GITHUB_OUTPUT
           echo "Deployed to: $url"
-        working-directory: ./frontend
 
       - name: Comment PR with deployment URL
         if: github.event_name == 'pull_request'
