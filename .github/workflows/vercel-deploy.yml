@@ -35,24 +35,13 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
-      - name: Install dependencies
-        run: npm ci
-        working-directory: ./frontend
-
-      - name: Build React app
-        run: npm run build
-        working-directory: ./frontend
-        env:
-          CI: false
-          REACT_APP_API_URL: ${{ secrets.REACT_APP_API_URL }}
-
       - name: Deploy to Vercel
         id: deploy
         run: |
-          url=$(vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes)
+          cd frontend
+          url=$(vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }} --yes --cwd .)
           echo "url=$url" >> $GITHUB_OUTPUT
           echo "Deployed to: $url"
-        working-directory: ./frontend
 
       - name: Comment PR with deployment URL
         if: github.event_name == 'pull_request'
