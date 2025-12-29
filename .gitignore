@@ -35,3 +35,5 @@ airflow/cookies.txt
 /music-recommender
 backend/cookies.txt
 .vercel
+.DS_Store
+
