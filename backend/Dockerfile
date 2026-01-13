@@ -2,8 +2,11 @@ FROM python:3.10-slim
 
 WORKDIR /app
 
-# Install dependencies
-RUN apt-get update && \
+# Install dependencies with retry and alternative mirrors
+RUN apt-get update --fix-missing || \
+    (echo "deb http://ftp.us.debian.org/debian trixie main" > /etc/apt/sources.list && \
+     echo "deb http://ftp.us.debian.org/debian trixie-updates main" >> /etc/apt/sources.list && \
+     apt-get update) && \
     apt-get install -y --no-install-recommends \
         build-essential \
         libffi-dev \
