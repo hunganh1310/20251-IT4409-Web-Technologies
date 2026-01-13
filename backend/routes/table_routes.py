@@ -71,6 +71,7 @@ def read_table(table_name: str):
 
 @router.post("/tables/{table_name}")
 def create_row(table_name: str, row: Dict[str, Any]):
+    conn = None
     try:
         conn = get_conn()
         cur = conn.cursor()
@@ -82,11 +83,22 @@ def create_row(table_name: str, row: Dict[str, Any]):
         cur.close()
         conn.close()
         return {"status": "created"}
+    except psycopg2.IntegrityError as e:
+        if conn:
+            conn.rollback()
+        raise HTTPException(status_code=409, detail=f"Integrity constraint violation: {str(e)}")
+    except psycopg2.Error as e:
+        if conn:
+            conn.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
     except Exception as e:
+        if conn:
+            conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.put("/tables/{table_name}/{pk}")
 def update_row(table_name: str, pk: str, row: Dict[str, Any]):
+    conn = None
     try:
         pk_name = get_primary_key(table_name)
 
@@ -103,11 +115,25 @@ def update_row(table_name: str, pk: str, row: Dict[str, Any]):
         conn = get_conn()
         cur = conn.cursor()
         cur.execute(query, values)
+        
+        if cur.rowcount == 0:
+            conn.rollback()
+            cur.close()
+            conn.close()
+            raise HTTPException(status_code=404, detail=f"Record with id {pk} not found in {table_name}")
+        
         conn.commit()
         cur.close()
         conn.close()
         return {"status": "updated"}
+    except psycopg2.Error as e:
+        if conn:
+            conn.rollback()
+        print("❌ Update error:", e)
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
     except Exception as e:
+        if conn:
+            conn.rollback()
         print("❌ Update error:", e)
         raise HTTPException(status_code=500, detail=str(e))
 
@@ -117,12 +143,40 @@ def delete_row(table_name: str, pk: str):
         pk_name = get_primary_key(table_name)
         conn = get_conn()
         cur = conn.cursor()
+        
+        # For users table, first delete related records in playlist_user
+        if table_name == "users":
+            cur.execute('DELETE FROM playlist_user WHERE user_id = %s', (pk,))
+        
+        # For playlists table, first delete related records
+        if table_name == "playlists":
+            cur.execute('DELETE FROM playlist_tracks WHERE playlist_id = %s', (pk,))
+            cur.execute('DELETE FROM playlist_user WHERE playlist_id = %s', (pk,))
+        
+        # For songs table, first delete related records
+        if table_name == "songs":
+            cur.execute('DELETE FROM playlist_tracks WHERE track_id = %s', (pk,))
+        
+        # Now delete the main record
         cur.execute(f'DELETE FROM "{table_name}" WHERE "{pk_name}" = %s', (pk,))
+        
+        if cur.rowcount == 0:
+            conn.rollback()
+            cur.close()
+            conn.close()
+            raise HTTPException(status_code=404, detail=f"Record with id {pk} not found in {table_name}")
+        
         conn.commit()
         cur.close()
         conn.close()
         return {"status": "deleted"}
+    except psycopg2.Error as e:
+        if conn:
+            conn.rollback()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
     except Exception as e:
+        if conn:
+            conn.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/overview")

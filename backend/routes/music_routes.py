@@ -195,8 +195,18 @@ async def update_playlist(
     name: str = Form(None),
     description: str = Form(None),
     cover_image: UploadFile = File(None),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
+    # Verify ownership
+    ownership = db.execute(text("""
+        SELECT 1 FROM playlist_user
+        WHERE playlist_id = :playlist_id AND user_id = :user_id AND type = 'playlist'
+    """), {"playlist_id": playlist_id, "user_id": current_user.id}).fetchone()
+    
+    if not ownership:
+        raise HTTPException(status_code=403, detail="You don't have permission to edit this playlist")
+    
     playlist = db.query(Playlist).filter(Playlist.id == playlist_id).first()
     if not playlist:
         raise HTTPException(status_code=404, detail="Playlist not found")
@@ -224,6 +234,16 @@ async def update_playlist(
 @router.delete("/user_playlist/{playlist_id}")
 def delete_playlist(playlist_id: str, db: Session = Depends(get_db),current_user: User = Depends(get_current_user)):
     user_id = current_user.id
+    
+    # Verify ownership through playlist_user table (type='playlist' indicates user-created playlist)
+    ownership = db.execute(text("""
+        SELECT 1 FROM playlist_user
+        WHERE playlist_id = :playlist_id AND user_id = :user_id AND type = 'playlist'
+    """), {"playlist_id": playlist_id, "user_id": user_id}).fetchone()
+    
+    if not ownership:
+        raise HTTPException(status_code=404, detail="Playlist not found or not owned by user")
+    
     # First delete all songs from the playlist
     db.execute(text("""
         DELETE FROM playlist_tracks
@@ -237,15 +257,12 @@ def delete_playlist(playlist_id: str, db: Session = Depends(get_db),current_user
     """), {"playlist_id": playlist_id, "user_id": user_id})
 
     # Then delete the playlist itself
-    result = db.execute(text("""
+    db.execute(text("""
         DELETE FROM playlists
-        WHERE id = :playlist_id AND owner_id = :user_id
-    """), {"playlist_id": playlist_id, "user_id": user_id})
+        WHERE id = :playlist_id
+    """), {"playlist_id": playlist_id})
 
     db.commit()
-
-    if result.rowcount == 0:
-        raise HTTPException(status_code=404, detail="Playlist not found or not owned by user")
 
     return {"message": "Playlist deleted successfully"}
 
@@ -282,7 +299,6 @@ async def create_playlist(
         cover_image_url=cover_url,
         # is_public=True,
         # last_played=None,
-        owner_id=user_id
     )
     db.add(playlist)
     db.add(PlaylistUser(user_id=user_id, playlist_id=playlist_id, type="playlist"))
@@ -299,8 +315,18 @@ async def create_playlist(
 def remove_track_from_playlist(
     playlist_id: str,
     track_id: str = Query(...),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
 ):
+    # Verify ownership
+    ownership = db.execute(text("""
+        SELECT 1 FROM playlist_user
+        WHERE playlist_id = :playlist_id AND user_id = :user_id AND type = 'playlist'
+    """), {"playlist_id": playlist_id, "user_id": current_user.id}).fetchone()
+    
+    if not ownership:
+        raise HTTPException(status_code=403, detail="You don't have permission to modify this playlist")
+    
     delete_query = text("""
         DELETE FROM playlist_tracks
         WHERE playlist_id = :playlist_id AND track_id = :track_id
@@ -309,10 +335,11 @@ def remove_track_from_playlist(
         "playlist_id": playlist_id,
         "track_id": track_id
     })
-    db.commit()
-
+    
     if result.rowcount == 0:
         raise HTTPException(status_code=404, detail="Track not found in playlist")
+    
+    db.commit()
 
     return {"message": "Track removed from playlist"}
 
@@ -425,6 +452,16 @@ def add_track_to_playlist(
     current_user: User = Depends(get_current_user)
 ):
     user_id = current_user.id
+    
+    # Verify ownership
+    ownership = db.execute(text("""
+        SELECT 1 FROM playlist_user
+        WHERE playlist_id = :playlist_id AND user_id = :user_id AND type = 'playlist'
+    """), {"playlist_id": playlist_id, "user_id": user_id}).fetchone()
+    
+    if not ownership:
+        raise HTTPException(status_code=403, detail="You don't have permission to modify this playlist")
+    
     # Step 1: Check if track already exists
     existing = db.execute(text("""
         SELECT 1 FROM playlist_tracks
@@ -457,6 +494,21 @@ def add_to_library(
     current_user: User = Depends(get_current_user)
 ):
     user_id = current_user.id
+    
+    # For artists and albums, we need to ensure a playlist entry exists
+    # since playlist_user has a foreign key constraint to playlists table
+    if type in ["artist", "single", "composite"]:
+        existing_playlist = db.query(Playlist).filter(Playlist.id == item_id).first()
+        if not existing_playlist:
+            # Create a placeholder playlist entry
+            playlist = Playlist(
+                id=item_id,
+                name=f"{type.capitalize()} Library Entry",
+                description=f"Library entry for {type}",
+            )
+            db.add(playlist)
+            db.commit()
+    
     new_entry = PlaylistUser(
         playlist_id=item_id,
         user_id=user_id,
@@ -465,6 +517,7 @@ def add_to_library(
 
     db.add(new_entry)
     db.commit()
+    return {"message": "Item added to library successfully"}
 
 @router.delete("/remove_from_library/{item_id}")
 def remove_from_library(
@@ -481,10 +534,11 @@ def remove_from_library(
         "item_id": item_id,
         "user_id": user_id
     })
-    db.commit()
-
+    
     if result.rowcount == 0:
         raise HTTPException(status_code=404, detail="Playlist not found in library")
+    
+    db.commit()
 
     return {"message": "Playlist removed from library"}
 
